@@ -1,24 +1,52 @@
 import logo from './logo.svg';
 import './App.css';
+import Login from './comp/Login';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import { Link } from 'react-router-dom/cjs/react-router-dom';
+import Signup from './comp/Signup';
+import Forgetpass from './comp/Forgetpass';
+import Createpass from './comp/Createpass';
+import Routerror from './comp/Routerror';
+import Session from './comp/Session';
+import Adminpannel from './comp/Adminpannel';
+import Secure from './comp/Secure';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+
+        <Route path='/signup'>
+          <Signup />
+        </Route>
+        <Route path='/createpass'>
+          <Createpass />
+        </Route>
+        <Route path='/forgetpass'>
+          <Forgetpass />
+        </Route>
+        <Route path='/session'>
+          <Secure>
+            <Session />
+          </Secure>
+        </Route>
+        <Route path='/admin'>
+          <Adminpannel />
+        </Route>
+        <Route exact path='/'>
+          <Login />
+        </Route>
+        <Route>
+          <Routerror />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
