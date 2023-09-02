@@ -14,7 +14,7 @@ const Session = () => {
     const [search, setsearch] = useState("");
     const [searchdata, setsearchdata] = useState([]);
 
-    const searchurl = 'https://weary-slug-jumpsuit.cyclic.app/phonebook/findbyfeild?search=' + search;
+    const searchurl = 'https://lazy-blue-puffer-veil.cyclic.app/phonebook/findbyfeild?search=' + search;
 
     console.log(searchurl);
 
@@ -45,7 +45,7 @@ const Session = () => {
 
     // console.log(Contect);
     // useEffect(() => {
-    //     axios.get('https://weary-slug-jumpsuit.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
+    //     axios.get('https://lazy-blue-puffer-veil.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
     //         .then((res) => {
     //             setContect(res.data.data)
     //             // console.log(res.data);
@@ -80,13 +80,12 @@ const Session = () => {
                             <img src="https://illustoon.com/photo/7817.png" width={'100%'} alt="" />
                         </div>
                         <div className='w-80'>
-                            <div className="w-50"><h1>Username :- MilanAhir227</h1></div>
+                            <div className="w-50"><h1>Username :- {localStorage.getItem('userusername')}</h1></div>
                             <div className="w-50">
-                                <h2>name :- Milan mor</h2></div>
+                                <h2>name :- {localStorage.getItem('username')}</h2></div>
                         </div>
                     </div>
                     <div className="search"><input type="search" placeholder='search' onChange={(el) => Serch(el.target.value)} /></div>
-                    <div>{search}</div>
                     <div className='card-area'>
 
 
@@ -111,7 +110,7 @@ const Session = () => {
                                 }}
                                 onSubmit={async (values, action) => {
                                     console.log(values);
-                                    axios.post('https://weary-slug-jumpsuit.cyclic.app/phonebook/create', {
+                                    axios.post('https://lazy-blue-puffer-veil.cyclic.app/phonebook/create', {
                                         "fname": values.fname,
                                         "lname": values.lname,
                                         "contact": values.contect,

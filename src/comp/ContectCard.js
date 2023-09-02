@@ -28,7 +28,7 @@ const ContectCard = (props) => {
   let DELID
   const Delete =(el)=>{
     DELID = el.target.value;
-    const DelUrl = ('https://weary-slug-jumpsuit.cyclic.app/phonebook/delete?id='+DELID);
+    const DelUrl = ('https://lazy-blue-puffer-veil.cyclic.app/phonebook/delete?id='+DELID);
     console.log(DelUrl);
     axios.delete(DelUrl,{ headers: {'usertoken':token }})
     .then((res)=>{

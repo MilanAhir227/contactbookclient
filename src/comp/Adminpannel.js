@@ -37,13 +37,14 @@ const Adminpannel = () => {
             <div className="w-30" id='slider'>
               <div className="view">
                 <div className="admin-profile admin-manu">
-                <button onClick={Logout}>Log out</button>
                 </div>
                 <div className="admin-manu">
                   <button ><Link to='/admin/dashbord'>Dashboard</Link></button>
                   <button ><Link to='/admin/table'>Table</Link></button>
                   <button ><Link to='/admin/users'>User Data</Link></button>
                   <button ><Link to='/admin/manage'>manage</Link></button>
+                  <button onClick={Logout}>Log out</button>
+
                 </div>
               </div>
             </div>

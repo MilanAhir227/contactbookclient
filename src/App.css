@@ -51,6 +51,13 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.errorpass{
+  color: red;
+  font-weight: bold;
+  font-size: 12px;
+}
+
 .box-1 {
   position: relative;
   width: 380px;
@@ -219,6 +226,7 @@ body {
   transform: translateX(0px) translateY(-31px);
   font-size: 0.75em;
 }
+
 .inputBox i {
   position: absolute;
   left: 0;
@@ -230,6 +238,9 @@ body {
   transition: 0.5s;
   pointer-events: none;
   z-index: 9;
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
 }
 .inputBox input:valid ~ i,
 .inputBox input:focus ~ i {
@@ -317,7 +328,7 @@ svg {
     stroke-dasharray: 6% 29%;
     stroke-width: 5px;
     stroke-dashoffset: 0%;
-    animation: stroke-offset 5.5s infinite linear;
+    animation: stroke-offset 7s infinite linear;
 }
 
 .text-copy:nth-child(1){

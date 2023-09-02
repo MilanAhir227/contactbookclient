@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { useHistory } from 'react-router-dom'
 import Animationtext from './Animationtext';
 import axios from 'axios';
+import * as Yup from "yup";
+
 const Login = () => {
   const history = useHistory()
+  let Logerror
   useEffect(() => {
-    // axios.post('https://weary-slug-jumpsuit.cyclic.app/user/login')
+    // axios.post('https://lazy-blue-puffer-veil.cyclic.app/user/login')
     // .then((res) => {
     //     console.log(res);
     //     // setContect(res.data.data)
@@ -17,7 +20,10 @@ const Login = () => {
     //   })
   }, [])
 
-
+  let LoginSchema =Yup.object().shape({
+    uname: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').required('*please enter username'),
+    password:Yup.string().min(8, 'Too Short!').max(70, 'Too Long!').required('*please enter password'),
+  });
 
   return (
 
@@ -29,34 +35,28 @@ const Login = () => {
           uname: '',
           password: '',
         }}
+        validationSchema={LoginSchema}
         onSubmit={async (values,action) => {
-          axios.post('https://weary-slug-jumpsuit.cyclic.app/user/login', {
+          axios.post('https://lazy-blue-puffer-veil.cyclic.app/user/login', {
             "uname": values.uname,
             "password": values.password
           })
-            .then(function (response) {
-              console.log(response.data.token);
-              localStorage.setItem('token', response.data.token)
+            .then(function (res) {
+              console.log(res.data.token);
+              localStorage.setItem('token', res.data.token)
+              localStorage.setItem('username', res.data.data.fname+" "+res.data.data.lname)
+                localStorage.setItem('userusername', res.data.data.uname)
+                localStorage.setItem('usercontact', res.data.data.contact)
+                localStorage.setItem('useremail', res.data.data.email)
+
+                console.log(res.data);
               action.resetForm();
               history.push('/session')
             })
             .catch(function (error) {
                 console.log("user error");
+                   Logerror = "incorrect username or password"
             });
-            axios.post('https://weary-slug-jumpsuit.cyclic.app/admin/login',{
-                "uname": values.uname,
-               "password": values.password
-              })
-              .then((res)=>{
-                console.log(res.data.token);
-                localStorage.setItem('admintoken', res.data.token)
-                action.resetForm();
-                history.push('/admin/dashbord')
-              })
-              .catch((error)=>{
-                console.log("admin error");
-
-              })
         }}
       >
         <Form>
@@ -66,13 +66,16 @@ const Login = () => {
               <div class="inputBox">
                 <Field type="text" id="uname" name="uname" required="required" />
                 <span>Username</span>
-                <i></i>
+                <i>
+                  <ErrorMessage name='uname'/>
+                
+                </i>
               </div>
 
               <div class="inputBox">
                 <Field id="password" type="password" name="password" required="required" />
                 <span>Password</span>
-                <i></i>
+                <i><ErrorMessage name='password'/></i>
               </div>
               <div class="links">
                 <Link to='/forgetpass'>Forgot Password</Link>

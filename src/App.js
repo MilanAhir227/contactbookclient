@@ -17,6 +17,7 @@ import Session from './comp/Session';
 import Adminpannel from './comp/Adminpannel';
 import Secure from './comp/Secure';
 import Adminsecure from './comp/Adminsecure';
+import Adminlogin from './comp/Adminlogin';
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
         <Adminsecure>
           <Adminpannel />
         </Adminsecure>
+        </Route>
+        <Route path='/adminlog'>
+          <Adminlogin />
+
         </Route>
         <Route exact path='/'>
           <Login />
