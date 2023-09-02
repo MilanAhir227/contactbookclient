@@ -41,9 +41,22 @@ const Login = () => {
               history.push('/session')
             })
             .catch(function (error) {
-              console.log(error);
+                console.log("user error");
             });
+            axios.post('https://weary-slug-jumpsuit.cyclic.app/admin/login',{
+                "uname": values.uname,
+               "password": values.password
+              })
+              .then((res)=>{
+                console.log(res.data.token);
+                localStorage.setItem('admintoken', res.data.token)
+                action.resetForm();
+                history.push('/admin/dashbord')
+              })
+              .catch((error)=>{
+                console.log("admin error");
 
+              })
         }}
       >
         <Form>

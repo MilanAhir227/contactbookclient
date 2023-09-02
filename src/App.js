@@ -16,6 +16,7 @@ import Routerror from './comp/Routerror';
 import Session from './comp/Session';
 import Adminpannel from './comp/Adminpannel';
 import Secure from './comp/Secure';
+import Adminsecure from './comp/Adminsecure';
 
 function App() {
   return (
@@ -37,7 +38,9 @@ function App() {
           </Secure>
         </Route>
         <Route path='/admin'>
+        <Adminsecure>
           <Adminpannel />
+        </Adminsecure>
         </Route>
         <Route exact path='/'>
           <Login />

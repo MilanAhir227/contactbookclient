@@ -8,8 +8,15 @@ import { useHistory } from 'react-router-dom'
 
 const Session = () => {
     const history = useHistory();
-    const [Contect, setContect] = useState([]);
-    const [User , setUser] = useState([]);
+    // const [Contect, setContect] = useState([]);
+    const [User, setUser] = useState([]);
+
+    const [search, setsearch] = useState("");
+    const [searchdata, setsearchdata] = useState([]);
+
+    const searchurl = 'https://weary-slug-jumpsuit.cyclic.app/phonebook/findbyfeild?search=' + search;
+
+    console.log(searchurl);
 
     const [data, setData] = useState(true);
 
@@ -17,39 +24,51 @@ const Session = () => {
         setData(false)
 
     }
-   
+
     const Close = () => {
         setData(true)
 
     }
-    const Logout =()=>{
-       let comform = window.confirm("do logout this page ?");
-        if(comform)
-        {
+    const Logout = () => {
+        let comform = window.confirm("do logout this page ?");
+        if (comform) {
             localStorage.removeItem('token')
             history.push('/');
         }
-        else
-        {
+        else {
             console.log("fail");
         }
     }
     const token = localStorage.getItem('token');
 
 
-    
+
     // console.log(Contect);
+    // useEffect(() => {
+    //     axios.get('https://weary-slug-jumpsuit.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
+    //         .then((res) => {
+    //             setContect(res.data.data)
+    //             // console.log(res.data);
+    //         })
+    //         .catch((error) => {
+    //             console.log("error");
+    //         })
+
+    // }, [Contect])
     useEffect(() => {
-        axios.get('https://weary-slug-jumpsuit.cyclic.app/phonebook/findbyuser',{ headers: {'usertoken':token }})
+        axios.get(searchurl, { headers: { 'usertoken': token } })
             .then((res) => {
-                setContect(res.data.data)
-                console.log(res.data);
+                setsearchdata(res.data.data)
+                // console.log(res.data);
             })
             .catch((error) => {
                 console.log("error");
             })
-    }, [Contect])
+    }, [searchdata])
 
+    const Serch = (text) => {
+        setsearch(text)
+    }
 
     return (
         <div>
@@ -66,14 +85,15 @@ const Session = () => {
                                 <h2>name :- Milan mor</h2></div>
                         </div>
                     </div>
+                    <div className="search"><input type="search" placeholder='search' onChange={(el) => Serch(el.target.value)} /></div>
+                    <div>{search}</div>
                     <div className='card-area'>
-                        {/* <ContectCard fname="milan" lname="mor" contact="9924071917" city="surat"/>   */}
 
 
                         {
                             // console.log(el.city);    
-                            Contect.map((el, index) => {
-                                return <ContectCard fname={el.fname} lname={el.lname} contact={el.contact} city={el.city} country={el.country} id={el._id}/>
+                            searchdata.map((el, index) => {
+                                return <ContectCard fname={el.fname} lname={el.lname} contact={el.contact} city={el.city} country={el.country} id={el._id} />
                             })
                         }
                         <div class="card-add">
@@ -90,10 +110,11 @@ const Session = () => {
                                     country: '',
                                 }}
                                 onSubmit={async (values, action) => {
+                                    console.log(values);
                                     axios.post('https://weary-slug-jumpsuit.cyclic.app/phonebook/create', {
                                         "fname": values.fname,
                                         "lname": values.lname,
-                                        "contact": values.contact,
+                                        "contact": values.contect,
                                         "city": values.city,
                                         "country": values.country,
                                     }, { headers: { 'usertoken': token } })
@@ -108,7 +129,7 @@ const Session = () => {
                                         });
                                 }}
                             >
-                                
+
                                 <Form style={data ? { display: 'none' } : { display: 'block' }}>
                                     <div class="box-model">
                                         <div class="form-model">

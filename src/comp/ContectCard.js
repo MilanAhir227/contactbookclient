@@ -111,6 +111,7 @@ const ContectCard = (props) => {
 					<div class="tags">
 						<button onClick={Edit}>Edit</button>
 						<button onClick={Delete} value={Delid}>Delete</button>
+      
 					</div>
 				</div>
 			</div>
