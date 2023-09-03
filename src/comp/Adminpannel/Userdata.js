@@ -8,7 +8,7 @@ const Userdata = () => {
   
     const Admintoken = localStorage.getItem('admintoken')
     useEffect(()=>{
-      axios.get('https://lazy-blue-puffer-veil.cyclic.app/user/find',{ headers: {'admintoken': Admintoken}})
+      axios.get('https://real-crab-jodhpurs.cyclic.app/user/find',{ headers: {'admintoken': Admintoken}})
     .then((res)=>{
       setData(res.data.data)
     })

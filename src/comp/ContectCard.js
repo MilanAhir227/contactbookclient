@@ -17,106 +17,122 @@ const ContectCard = (props) => {
 
   const Delid = props.id
 
-  const Close =()=>{
+  const Close = () => {
     setData(true)
 
   }
 
-  const Edit =()=>{
+  const Edit = () => {
     setData(false)
   }
   let DELID
-  const Delete =(el)=>{
+  const Delete = (el) => {
     DELID = el.target.value;
-    const DelUrl = ('https://lazy-blue-puffer-veil.cyclic.app/phonebook/delete?id='+DELID);
+    const DelUrl = ('https://real-crab-jodhpurs.cyclic.app/phonebook/delete?id=' + DELID);
     console.log(DelUrl);
-    axios.delete(DelUrl,{ headers: {'usertoken':token }})
-    .then((res)=>{
-      console.log(res);
-      history.push('/session');
-    })
-    .catch((error)=>{
-      console.log("error");
-    })
+    axios.delete(DelUrl, { headers: { 'usertoken': token } })
+      .then((res) => {
+        console.log(res);
+        history.push('/session');
+      })
+      .catch((error) => {
+        console.log("error");
+      })
   }
 
-	return (
-		<>
-		<div className="model-edit">
+  const Upadteurl = 'https://real-crab-jodhpurs.cyclic.app/phonebook/update?id=' + props.id;
 
-		<Formik
-                initialValues={{
-                    fname: '',
-                    lname: '',
-                    contect: '',
-                    contect: '',
-                    city: '',
-                    country: '',
-                }}
-                onSubmit={async (values) => {
-                    // window.location = "/session"
-                    // history.push('/signup')
-                    
-                    await new Promise((r) => setTimeout(r, 500));
-                    alert(JSON.stringify(values, null, 2));
-                }}
-            >
-    <Form style={data?{display:'none'}:{display:'block'}}>
-    <div class="box-model">
-    <div class="form-model">
-      <div class="inputBox-model">
-        <Field type="text" id="fname" value={props.fname} name="fname" required="required"  />
-        <span>Fname</span>
-        <i></i>
-      </div>
-      <div class="inputBox-model">
-        <Field type="text" id="lname" name="lname"value={props.lname} required="required"  />
-        <span>Lname</span>
-        <i></i>
-      </div>
-      
+  return (
+    <>
+      <div className="model-edit">
 
-      <div class="inputBox-model">
-        <Field id="contect" type="contect" name="contect" value={props.contact} required="required"/>
-        <span>Contect</span>
-        <i></i>
-      </div>
-      <div class="inputBox-model">
-        <Field id="city" type="city" name="city" value={props.city} required="required"/>
-        <span>City</span>
-        <i></i>
-      </div>
-      <div class="inputBox-model">
-        <Field id="country" type="country" name="country" value={props.country} required="required"/>
-        <span>Country</span>
-        <i></i>
-      </div>
-      <div className="flex space-beet">
-        <input type='button' value="close" onClick={Close}/>
-      <input type="submit" value="save" /></div>
-    </div>
-  </div>
-    </Form>
-  </Formik>
+        <Formik
+          initialValues={{
+            fname: props.fname || '',
+            lname: props.lname || '',
+            contect: props.contact || '',
+            city: props.city || '',
+            country: props.country || '',
+          }}
+          onSubmit={async (values) => {
 
-		</div>
-			<div class="card">
-				<div class="poster"><h1>{props.fname + " " + props.lname}</h1></div>
-				<div class="details">
-					<h1>{props.fname + " " + props.lname}</h1>
-					<h1>{props.contact}</h1>
-					<div class="rating">
-						location :- {props.city},{props.country}
-					</div>
-					<div class="tags">
-						<button onClick={Edit}>Edit</button>
-						<button onClick={Delete} value={Delid}>Delete</button>
-      
-					</div>
-				</div>
-			</div>
-		</>
-	)
+            axios.patch(Upadteurl,{
+              "fname": values.fname,
+              "lname": values.lname,
+              "contact": values.contect,
+              "city": values.city,
+              "country":values.country
+            }, { headers: { 'usertoken': token } } )
+              .then((res) => {
+                console.log(res);
+                setData(true);
+                history.push('/session');
+
+              })
+              .catch((error) => {
+                console.log("error");
+              })
+
+            // await new Promise((r) => setTimeout(r, 500));
+            // alert(JSON.stringify(values, null, 2));
+          }}
+        >
+          <Form style={data ? { display: 'none' } : { display: 'block' }}>
+            <div class="box-model">
+              <div class="form-model">
+                <div class="inputBox-model">
+                  <Field type="text" id="fname" name="fname" required="required" />
+                  <span>Fname</span>
+                  <i></i>
+                </div>
+                <div class="inputBox-model">
+                  <Field type="text" id="lname" name="lname" required="required" />
+                  <span>Lname</span>
+                  <i></i>
+                </div>
+
+
+                <div class="inputBox-model">
+                  <Field id="contect" type="contect" name="contect" required="required" />
+                  <span>Contect</span>
+                  <i></i>
+                </div>
+                <div class="inputBox-model">
+                  <Field id="city" type="city" name="city" required="required" />
+                  <span>City</span>
+                  <i></i>
+                </div>
+                <div class="inputBox-model">
+                  <Field id="country" type="country" name="country" required="required" />
+                  <span>Country</span>
+                  <i></i>
+                </div>
+                <div className="flex space-beet">
+                  <input type='button' value="close" onClick={Close} />
+                  <input type="submit" value="save" /></div>
+              </div>
+            </div>
+          </Form>
+        </Formik>
+
+      </div>
+      <div class="card">
+        <div class="poster"><h1>{props.fname + " " + props.lname}</h1></div>
+        <div class="details">
+          <h1>{props.fname + " " + props.lname}</h1>
+          <h1>{props.contact}</h1>
+          <div class="rating">
+            location :- {props.city},{props.country}
+          </div>
+          <div class="tags">
+            <button onClick={Edit}>Edit</button>
+            <button onClick={Delete} value={Delid}>Delete</button>
+
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default ContectCard

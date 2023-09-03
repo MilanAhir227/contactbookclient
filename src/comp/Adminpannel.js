@@ -20,7 +20,17 @@ const Adminpannel = () => {
     let comform = window.confirm("do logout this page ?");
     if(comform)
     {
-        localStorage.removeItem('admintoken')
+      localStorage.removeItem('token')
+            localStorage.removeItem('admintoken')
+            localStorage.removeItem('username')
+            localStorage.removeItem('userid')
+            localStorage.removeItem('userusername')
+            localStorage.removeItem('usercontact')
+            localStorage.removeItem('useremail')
+            localStorage.removeItem('adminname')
+            localStorage.removeItem('adminusername')
+            localStorage.removeItem('admincontact')
+            localStorage.removeItem('adminemail')
         history.push('/');
     }
     else

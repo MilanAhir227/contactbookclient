@@ -34,7 +34,7 @@ const Signup = () => {
             }}
             validationSchema={signupSchema}
             onSubmit={async (values, action) => {
-                axios.post('https://lazy-blue-puffer-veil.cyclic.app/user/signup', {
+                axios.post('https://real-crab-jodhpurs.cyclic.app/user/signup', {
                     "fname": values.fname,
                     "lname": values.lname,
                     "uname": values.username,

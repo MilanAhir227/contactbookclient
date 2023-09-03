@@ -10,7 +10,7 @@ const Login = () => {
   const history = useHistory()
   let Logerror
   useEffect(() => {
-    // axios.post('https://lazy-blue-puffer-veil.cyclic.app/user/login')
+    // axios.post('https://real-crab-jodhpurs.cyclic.app/user/login')
     // .then((res) => {
     //     console.log(res);
     //     // setContect(res.data.data)
@@ -37,13 +37,14 @@ const Login = () => {
         }}
         validationSchema={LoginSchema}
         onSubmit={async (values,action) => {
-          axios.post('https://lazy-blue-puffer-veil.cyclic.app/user/login', {
+          axios.post('https://real-crab-jodhpurs.cyclic.app/user/login', {
             "uname": values.uname,
             "password": values.password
           })
             .then(function (res) {
               console.log(res.data.token);
               localStorage.setItem('token', res.data.token)
+              localStorage.setItem('userid', res.data.data._id)
               localStorage.setItem('username', res.data.data.fname+" "+res.data.data.lname)
                 localStorage.setItem('userusername', res.data.data.uname)
                 localStorage.setItem('usercontact', res.data.data.contact)

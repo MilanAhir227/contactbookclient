@@ -3,7 +3,14 @@ import ContectCard from './ContectCard'
 import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import { useHistory } from 'react-router-dom'
-
+import { Link } from 'react-router-dom/cjs/react-router-dom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+  } from "react-router-dom";
+import SessionSeting from './SessionSeting';
+import Secure from './Secure';
 
 
 const Session = () => {
@@ -14,9 +21,9 @@ const Session = () => {
     const [search, setsearch] = useState("");
     const [searchdata, setsearchdata] = useState([]);
 
-    const searchurl = 'https://lazy-blue-puffer-veil.cyclic.app/phonebook/findbyfeild?search=' + search;
+    // const searchurl = 'https://real-crab-jodhpurs.cyclic.app/phonebook/findbyfeild?search=' + search;
+     const searchurl = 'https://real-crab-jodhpurs.cyclic.app/phonebook/findbyuser';
 
-    console.log(searchurl);
 
     const [data, setData] = useState(true);
 
@@ -33,6 +40,16 @@ const Session = () => {
         let comform = window.confirm("do logout this page ?");
         if (comform) {
             localStorage.removeItem('token')
+            localStorage.removeItem('admintoken')
+            localStorage.removeItem('username')
+            localStorage.removeItem('userid')
+            localStorage.removeItem('userusername')
+            localStorage.removeItem('usercontact')
+            localStorage.removeItem('useremail')
+            localStorage.removeItem('adminname')
+            localStorage.removeItem('adminusername')
+            localStorage.removeItem('admincontact')
+            localStorage.removeItem('adminemail')
             history.push('/');
         }
         else {
@@ -45,7 +62,7 @@ const Session = () => {
 
     // console.log(Contect);
     // useEffect(() => {
-    //     axios.get('https://lazy-blue-puffer-veil.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
+    //     axios.get('https://real-crab-jodhpurs.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
     //         .then((res) => {
     //             setContect(res.data.data)
     //             // console.log(res.data);
@@ -70,11 +87,24 @@ const Session = () => {
         setsearch(text)
     }
 
+   
+
     return (
-        <div>
-            <div className="w-100">
+        <Router>
+            <Switch>
+            <Route path='/session/setting'>
+          {/* <Secure> */}
+            <SessionSeting />
+          {/* </Secure> */}
+        </Route>
+
+        <Route exact='/session'>
+        <div className="w-100">
                 <div className="w-1140">
+                    <div className="top-nav">
                     <div className='logout-btn' onClick={Logout}><button>Logout</button></div>
+                    <div className='logout-btn'><Link to='/session/setting'><button>setting</button></Link></div>
+                    </div>
                     <div className="profile">
                         <div className='w-20'>
                             <img src="https://illustoon.com/photo/7817.png" width={'100%'} alt="" />
@@ -110,7 +140,7 @@ const Session = () => {
                                 }}
                                 onSubmit={async (values, action) => {
                                     console.log(values);
-                                    axios.post('https://lazy-blue-puffer-veil.cyclic.app/phonebook/create', {
+                                    axios.post('https://real-crab-jodhpurs.cyclic.app/phonebook/create', {
                                         "fname": values.fname,
                                         "lname": values.lname,
                                         "contact": values.contect,
@@ -171,7 +201,11 @@ const Session = () => {
                     </div>
                 </div>
             </div>
-        </div>
+
+        </Route>
+           
+            </Switch>
+        </Router>
     )
 }
 

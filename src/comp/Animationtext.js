@@ -5,7 +5,7 @@ const Animationtext = () => {
         <div class="container animation">
             <svg viewBox="0 0 960 300">
                 <symbol id="s-text">
-                    <text text-anchor="middle" x="50%" y="50%">Contect-Book By Milan and Pratik</text>
+                    <text text-anchor="middle" x="50%" y="50%">Contect-Book</text>
                 </symbol>
 
                 <g class="g-ants">

@@ -18,6 +18,8 @@ import Adminpannel from './comp/Adminpannel';
 import Secure from './comp/Secure';
 import Adminsecure from './comp/Adminsecure';
 import Adminlogin from './comp/Adminlogin';
+import MyAudioComponent from './comp/Loader';
+import SessionSeting from './comp/SessionSeting';
 
 function App() {
   return (
@@ -34,19 +36,25 @@ function App() {
           <Forgetpass />
         </Route>
         <Route path='/session'>
-          <Secure>
+          {/* <Secure> */}
             <Session />
-          </Secure>
+          {/* </Secure> */}
         </Route>
+        
         <Route path='/admin'>
         <Adminsecure>
           <Adminpannel />
         </Adminsecure>
         </Route>
+        <Route path='/load'>
+          <MyAudioComponent />
+
+        </Route>
         <Route path='/adminlog'>
           <Adminlogin />
 
         </Route>
+        
         <Route exact path='/'>
           <Login />
         </Route>
