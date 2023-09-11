@@ -1336,6 +1336,7 @@ td {
     height: 2px;
     margin-bottom: 10px;
   }
+
   .box-2 {
     position: relative;
     width: 80vw;
@@ -1345,6 +1346,7 @@ td {
     overflow: hidden;
     margin: auto;
   }
+
   .box-3 {
     position: relative;
     width: 80vw;
@@ -1354,7 +1356,8 @@ td {
     overflow: hidden;
     margin: auto;
   }
-  .box-3 .inputBox{
+
+  .box-3 .inputBox {
     margin-bottom: 15px;
   }
 
@@ -1425,377 +1428,283 @@ td {
   .input-box span {
     padding: 20px 0px 10px;
   }
+
   /* login seaction */
 
 
   /* session section */
 
-  .w-100,.w-1140{
+  .w-100,
+  .w-1140 {
     width: 100vw;
   }
-  .profile{
+
+  .profile {
     width: 100vw;
     flex-direction: column;
   }
-  .profile .w-20{
 
-  }
-  .profile .w-80 h1,h2{
+  .profile .w-20 {}
+
+  .profile .w-80 h1,
+  h2 {
     font-size: 16px;
     display: inline-block;
     word-wrap: break-word;
     margin: 0;
   }
-  .top-nav{
+
+  .top-nav {
     width: 100vw;
   }
-  .search{
+
+  .search {
     width: 100vw;
 
   }
-  .search input{
+
+  .search input {
     width: 80%;
   }
-  .card-area{
+
+  .card-area {
     width: 100vw;
     height: auto;
   }
-  /* session section */
-}
-@media screen and (min-width: 361px) and (max-width: 768px) {
-  /* login seaction */
-  .body {
-    height: 50vh;
 
+  .box-setting .inputBox input:valid~span {
+    transform: translateX(0px) translateY(-40px) !important;
   }
 
-  .box {
-    position: relative;
-    width: 80vw;
-    height: 420px;
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-  }
-
-  .box-1 {
-    position: relative;
-    width: 90vw;
-    height: 90vh;
-
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-    padding: 0px 0px;
-  }
-
-  .box-1 .form {
-    padding-top: 10px;
-    width: 89vw;
-    height: 89.5vh;
-  }
-
-  .box-1 .inputBox i {
-    width: 65vw;
-    height: 2px;
-    margin-bottom: 10px;
-  }
-  .box-2 {
-    position: relative;
-    width: 80vw;
-    height: 420px;
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-  }
-  .box-3 {
-    position: relative;
-    width: 80vw;
-    height: 300px;
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-  }
-  .box-3 .inputBox{
-    margin-bottom: 15px;
-  }
-
-  .animation {
-    width: 100vw;
-  }
-
-  svg {
-    height: 150px;
-    width: 100vw;
-    padding: 10px 10px;
-    font-size: 130px;
-  }
-
-  .container {
-    margin: 0;
-    width: 100vw;
-    align-items: end;
-    height: 0;
-    padding-top: 50px;
-
-  }
-
-  .text-copy {
-    fill: none;
-    stroke: white;
-    stroke-dasharray: 6% 29%;
-    stroke-width: 13px;
-    stroke-dashoffset: 0%;
-    animation: stroke-offset 7s infinite linear;
-  }
-
-  .form {
-    width: 78.5vw;
-  }
-
-  .inputBox {
-    width: 78vw;
-  }
-
-  .inputBox input {
-    position: relative;
-    width: 65vw;
-    color: #23242a;
-    font-size: 1em;
+  .logout {
+    border: 1px solid #45f3ff;
+    outline: none;
+    background: transparent;
+    color: red;
+    padding: 11px 25px;
+    width: 120px;
+    margin-top: 10px;
+    border-radius: 4px;
     font-weight: bold;
-    letter-spacing: 0.07em;
+    font-size: 20px;
+  
+    cursor: pointer;
+    transition: all .3s ease;
   }
-
-  .inputBox i {
-    width: 62vw;
-    height: 2px;
-    margin-bottom: 10px;
+  
+  .logout:hover {
+    background-color: red;
+    color: white;
   }
-
-  .inputBox input:valid~i,
-  .inputBox input:focus~i {
-    height: 45px;
-  }
-
-  .inputBox input:focus~span {
-    color: #45f3ff;
-    transform: translateX(2px) translateY(-42px);
-    font-size: 0.75em;
-
-  }
-
-  .input-box span {
-    padding: 20px 0px 10px;
-  }
-  /* login seaction */
-
-
-  /* session section */
-
-  .w-100,.w-1140{
-    width: 100vw;
-  }
-  .profile{
-    width: 100vw;
-    flex-direction: column;
-  }
-  .profile .w-20{
-
-  }
-  .profile .w-80 h1,h2{
-    font-size: 16px;
-    display: inline-block;
-    word-wrap: break-word;
-    margin: 0;
-  }
-  .top-nav{
-    width: 100vw;
-  }
-  .search{
-    width: 100vw;
-
-  }
-  .search input{
-    width: 80%;
-  }
-  .card-area{
-    width: 100vw;
-    height: auto;
-  }
-  /* session section */
-}
-
-/* CSS for screens with a width between 769px and 1024px */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  /* login seaction */
-  .body {
-    height: 50vh;
-
-  }
-
-  .box {
-    position: relative;
-    width: 80vw;
-    height: 420px;
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-  }
-
-  .box-1 {
-    position: relative;
-    width: 90vw;
-    height: 90vh;
-
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-    padding: 0px 0px;
-  }
-
-  .box-1 .form {
-    padding-top: 10px;
-    width: 89vw;
-    height: 89.5vh;
-  }
-
-  .box-1 .inputBox i {
-    width: 65vw;
-    height: 2px;
-    margin-bottom: 10px;
-  }
-  .box-2 {
-    position: relative;
-    width: 80vw;
-    height: 420px;
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-  }
-  .box-3 {
-    position: relative;
-    width: 80vw;
-    height: 300px;
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-    margin: auto;
-  }
-  .box-3 .inputBox{
-    margin-bottom: 15px;
-  }
-
-  .animation {
-    width: 100vw;
-  }
-
-  svg {
-    height: 150px;
-    width: 100vw;
-    padding: 10px 10px;
-    font-size: 130px;
-  }
-
-  .container {
-    margin: 0;
-    width: 100vw;
-    align-items: end;
-    height: 0;
-    padding-top: 50px;
-
-  }
-
-  .text-copy {
-    fill: none;
-    stroke: white;
-    stroke-dasharray: 6% 29%;
-    stroke-width: 13px;
-    stroke-dashoffset: 0%;
-    animation: stroke-offset 7s infinite linear;
-  }
-
-  .form {
-    width: 78.5vw;
-  }
-
-  .inputBox {
-    width: 78vw;
-  }
-
-  .inputBox input {
-    position: relative;
-    width: 65vw;
-    color: #23242a;
-    font-size: 1em;
+  
+  .savechange {
+    border: 1px solid #45f3ff;
+    outline: none;
+    background: transparent;
+    color: green;
+    padding: 11px 25px;
+    width: 120px;
+    border-radius: 4px;
     font-weight: bold;
-    letter-spacing: 0.07em;
+    font-size: 20px;
+  
+    cursor: pointer;
+    transition: all .3s ease;
   }
-
-  .inputBox i {
-    width: 62vw;
-    height: 2px;
-    margin-bottom: 10px;
+  
+  .savechange:hover {
+    background-color: green;
+    color: white;
   }
-
-  .inputBox input:valid~i,
-  .inputBox input:focus~i {
-    height: 45px;
+  .box-setting .links button {
+    width: 70vw !important;
   }
-
-  .inputBox input:focus~span {
-    color: #45f3ff;
-    transform: translateX(2px) translateY(-42px);
-    font-size: 0.75em;
-
-  }
-
-  .input-box span {
-    padding: 20px 0px 10px;
-  }
-  /* login seaction */
-
-
-  /* session section */
-
-  .w-100,.w-1140{
-    width: 100vw;
-  }
-  .profile{
-    width: 100vw;
-    flex-direction: column;
-  }
-  .profile .w-20{
-
-  }
-  .profile .w-80 h1,h2{
-    font-size: 16px;
-    display: inline-block;
-    word-wrap: break-word;
-    margin: 0;
-  }
-  .top-nav{
-    width: 100vw;
-  }
-  .search{
-    width: 100vw;
-
-  }
-  .search input{
-    width: 80%;
-  }
-  .card-area{
-    width: 100vw;
-    height: auto;
-  }
+  
   /* session section */
 }
+
+/* user settings */
+.box-setting .form {
+  position: absolute;
+  inset: 2px;
+  border-radius: 8px;
+  background-color: #28292d;
+  z-index: 10;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box-setting {
+  position: relative;
+  width: 80vw;
+  height: 95vh;
+  background: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.box-setting::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 80vw;
+  height: 95vh;
+  background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+}
+
+.box-setting::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 80vw;
+  height: 95vh;
+  background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+  transform-origin: bottom right;
+  animation: animatesetting 6s linear infinite;
+  animation-delay: -3s;
+}
+
+@keyframes animatesetting {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.box-setting .form h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.box-setting .form {
+  position: absolute;
+  inset: 2px;
+  border-radius: 8px;
+  background-color: #28292d;
+  z-index: 10;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-setting .inputBox input {
+  position: relative;
+  width: 100%;
+  padding: 20px 10px 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #23242a;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+.box-setting .inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 20px 0px 10px;
+  font-size: 1em;
+  color: #8f8f8f;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+}
+
+.box-setting .inputBox input:valid~span {
+  color: #45f3ff;
+  transform: translateX(0px) translateY(-31px);
+  font-size: 0.75em;
+}
+
+.box-setting .inputBox i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0px;
+  border-radius: 4px;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 9;
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.box-setting .inputBox input:focus:focus~i {
+  height: 44px;
+  background-color: green;
+}
+
+.box-setting .inputBox input:focus {
+  color: white;
+}
+
+
+.box-setting .links {
+  margin-top: 5px;
+}
+
+.box-setting .links button {
+  width: 20vw;
+}
+
+
+
+.logout {
+  border: 1px solid #45f3ff;
+  outline: none;
+  background: transparent;
+  color: red;
+  padding: 11px 25px;
+  width: 50px;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 20px;
+
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.logout:hover {
+  background-color: red;
+  color: white;
+}
+
+.savechange {
+  border: 1px solid #45f3ff;
+  outline: none;
+  background: transparent;
+  color: green;
+  padding: 11px 25px;
+  width: 120px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 20px;
+
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.savechange:hover {
+  background-color: green;
+  color: white;
+}
+
+/* user settings */
 
 
 /* Loader Container */
@@ -1804,17 +1713,21 @@ td {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Adjust the height as needed */
+  height: 100vh;
+  /* Adjust the height as needed */
 }
 
 /* Loader Animation */
 .loader {
-  border: 6px solid #f3f3f3; /* Light gray border */
-  border-top: 6px solid #45f3ff; /* Blue border */
+  border: 6px solid #f3f3f3;
+  /* Light gray border */
+  border-top: 6px solid #45f3ff;
+  /* Blue border */
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: spin 2s linear infinite; /* Rotate the loader */
+  animation: spin 2s linear infinite;
+  /* Rotate the loader */
 }
 
 /* Text for Content Loaded */
@@ -1828,8 +1741,13 @@ td {
 
 /* Define the rotation animation */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 

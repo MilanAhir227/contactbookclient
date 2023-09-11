@@ -28,7 +28,7 @@ const ContectCard = (props) => {
   let DELID
   const Delete = (el) => {
     DELID = el.target.value;
-    const DelUrl = ('https://real-crab-jodhpurs.cyclic.app/phonebook/delete?id=' + DELID);
+    const DelUrl = ('https://graceful-tuna-undershirt.cyclic.app/phonebook/delete?id=' + DELID);
     console.log(DelUrl);
     axios.delete(DelUrl, { headers: { 'usertoken': token } })
       .then((res) => {
@@ -40,7 +40,7 @@ const ContectCard = (props) => {
       })
   }
 
-  const Upadteurl = 'https://real-crab-jodhpurs.cyclic.app/phonebook/update?id=' + props.id;
+  const Upadteurl = 'https://graceful-tuna-undershirt.cyclic.app/phonebook/update?id=' + props.id;
 
   return (
     <>
@@ -65,6 +65,7 @@ const ContectCard = (props) => {
             }, { headers: { 'usertoken': token } } )
               .then((res) => {
                 console.log(res);
+                
                 setData(true);
                 history.push('/session');
 

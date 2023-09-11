@@ -35,10 +35,15 @@ function App() {
         <Route path='/forgetpass'>
           <Forgetpass />
         </Route>
+        <Route path='/session/setting'>
+          <Secure>
+            <SessionSeting />
+          </Secure>
+        </Route>
         <Route path='/session'>
-          {/* <Secure> */}
+          <Secure>
             <Session />
-          {/* </Secure> */}
+          </Secure>
         </Route>
         
         <Route path='/admin'>
@@ -52,7 +57,6 @@ function App() {
         </Route>
         <Route path='/adminlog'>
           <Adminlogin />
-
         </Route>
         
         <Route exact path='/'>

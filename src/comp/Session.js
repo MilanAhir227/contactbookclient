@@ -21,8 +21,8 @@ const Session = () => {
     const [search, setsearch] = useState("");
     const [searchdata, setsearchdata] = useState([]);
 
-    // const searchurl = 'https://real-crab-jodhpurs.cyclic.app/phonebook/findbyfeild?search=' + search;
-     const searchurl = 'https://real-crab-jodhpurs.cyclic.app/phonebook/findbyuser';
+    // const searchurl = 'https://graceful-tuna-undershirt.cyclic.appphonebook/findbyfeild?search=' + search;
+     const searchurl = 'https://graceful-tuna-undershirt.cyclic.app/phonebook/find';
 
 
     const [data, setData] = useState(true);
@@ -41,7 +41,8 @@ const Session = () => {
         if (comform) {
             localStorage.removeItem('token')
             localStorage.removeItem('admintoken')
-            localStorage.removeItem('username')
+            localStorage.removeItem('fname')
+            localStorage.removeItem('lname')
             localStorage.removeItem('userid')
             localStorage.removeItem('userusername')
             localStorage.removeItem('usercontact')
@@ -62,7 +63,7 @@ const Session = () => {
 
     // console.log(Contect);
     // useEffect(() => {
-    //     axios.get('https://real-crab-jodhpurs.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
+    //     axios.get('https://graceful-tuna-undershirt.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
     //         .then((res) => {
     //             setContect(res.data.data)
     //             // console.log(res.data);
@@ -86,33 +87,27 @@ const Session = () => {
     const Serch = (text) => {
         setsearch(text)
     }
+    const Setting =()=>{
+        history.push('/session/setting')
+    }
 
    
 
     return (
         <Router>
-            <Switch>
-            <Route path='/session/setting'>
-          {/* <Secure> */}
-            <SessionSeting />
-          {/* </Secure> */}
-        </Route>
-
-        <Route exact='/session'>
         <div className="w-100">
                 <div className="w-1140">
                     <div className="top-nav">
-                    <div className='logout-btn' onClick={Logout}><button>Logout</button></div>
-                    <div className='logout-btn'><Link to='/session/setting'><button>setting</button></Link></div>
+                    <div className='logout-btn'><button onClick={Setting}>setting</button></div>
                     </div>
                     <div className="profile">
                         <div className='w-20'>
                             <img src="https://illustoon.com/photo/7817.png" width={'100%'} alt="" />
                         </div>
                         <div className='w-80'>
-                            <div className="w-50"><h1>Username :- {localStorage.getItem('userusername')}</h1></div>
+                            <div className="w-50"><h1>Username :- {localStorage.getItem('fname')+" "+localStorage.getItem('lname')}</h1></div>
                             <div className="w-50">
-                                <h2>name :- {localStorage.getItem('username')}</h2></div>
+                                <h2>name :- {localStorage.getItem('userusername')}</h2></div>
                         </div>
                     </div>
                     <div className="search"><input type="search" placeholder='search' onChange={(el) => Serch(el.target.value)} /></div>
@@ -140,7 +135,7 @@ const Session = () => {
                                 }}
                                 onSubmit={async (values, action) => {
                                     console.log(values);
-                                    axios.post('https://real-crab-jodhpurs.cyclic.app/phonebook/create', {
+                                    axios.post('https://graceful-tuna-undershirt.cyclic.app/phonebook/create', {
                                         "fname": values.fname,
                                         "lname": values.lname,
                                         "contact": values.contect,
@@ -201,11 +196,9 @@ const Session = () => {
                     </div>
                 </div>
             </div>
+            </Router>
 
-        </Route>
-           
-            </Switch>
-        </Router>
+       
     )
 }
 

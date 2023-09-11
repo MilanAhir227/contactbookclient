@@ -21,7 +21,7 @@ const Adminlogin = () => {
           password: '',
         }}
         onSubmit={async (values,action) => {
-            axios.post('https://real-crab-jodhpurs.cyclic.app/admin/login',{
+            axios.post('https://graceful-tuna-undershirt.cyclic.app/admin/login',{
                 "uname": values.uname,
                "password": values.password
               })
