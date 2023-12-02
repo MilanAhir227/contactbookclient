@@ -21,7 +21,7 @@ const Adminlogin = () => {
           password: '',
         }}
         onSubmit={async (values,action) => {
-            axios.post('https://graceful-tuna-undershirt.cyclic.app/admin/login',{
+            axios.post('http://13.51.56.32:3001/admin/login',{
                 "uname": values.uname,
                "password": values.password
               })

@@ -8,7 +8,7 @@ const Userdata = () => {
   
     const Admintoken = localStorage.getItem('admintoken')
     useEffect(()=>{
-      axios.get('https://graceful-tuna-undershirt.cyclic.app/user/find',{ headers: {'admintoken': Admintoken}})
+      axios.get('http://13.51.56.32:3001/user/find',{ headers: {'admintoken': Admintoken}})
     .then((res)=>{
       setData(res.data.data)
     })

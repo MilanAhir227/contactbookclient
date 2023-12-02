@@ -1,75 +1,67 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { useHistory } from 'react-router-dom'
 import Animationtext from './Animationtext';
 import axios from 'axios';
 import * as Yup from "yup";
+import { Url } from '../Url';
 const SessionSeting = () => {
 const token = localStorage.getItem('token');
 const history = useHistory();
-const updateUrl = 'https://graceful-tuna-undershirt.cyclic.app/user/update'
+const [User, setUser] = useState('');
+const [Error , setError] = useState('')
+
+const updateUrl = Url()+'/user/update'
 console.log(updateUrl);
 const Logout = () => {
   let comform = window.confirm("do logout this page ?");
   if (comform) {
        history.push('/');
-
       localStorage.removeItem('token')
-      localStorage.removeItem('admintoken')
-      localStorage.removeItem('fname')
-      localStorage.removeItem('lname')
-      localStorage.removeItem('userid')
-      localStorage.removeItem('userusername')
-      localStorage.removeItem('usercontact')
-      localStorage.removeItem('useremail')
-      localStorage.removeItem('adminname')
-      localStorage.removeItem('adminusername')
-      localStorage.removeItem('admincontact')
-      localStorage.removeItem('adminemail')
   }
   else {
       console.log("fail");
   }
 }
+useEffect(()=>{
+
+  axios.get(Url() + '/user/findbyid',{headers : { token : token}})
+  .then((res)=>{
+      // console.log(res.data.data);
+      setUser(res.data.data);
+  })
+},[])
+if(!User){
+  return (<>loading</>)
+}else{
   return (
     <div>
       <Formik
         initialValues={{
-          fname: localStorage.getItem('fname') || '',
-          lname: localStorage.getItem('lname') || '',
-          username: localStorage.getItem('userusername') || '',
-          contact: localStorage.getItem('usercontact') || '',
-          email: localStorage.getItem('useremail') || '',
+          fullname: User.fullname || '',
+          username:  User.uname|| '',
+          contact:  User.contact|| '',
+          email:  User.email|| '',
         }}
         onSubmit={async (values, action) => {
-          await new Promise((r) => setTimeout(r, 500));
-            alert(JSON.stringify(values, null, 2));
-          console.log(values);
-          console.log(updateUrl);
 
           axios.patch(updateUrl,{
-            "fname" : values.fname,
-            "lname" : values.lname,
+            "fullname" : values.fullname,
             "uname" : values.username,
             "contact" : values.contact,
             "email" : values.email
-          }, { headers: { 'usertoken': token } } )
+          }, { headers: { 'token': token } } )
             .then((res) => {
-              // console.log(res);
-              // console.log('yes');
-              // localStorage.setItem('fname', values.fname)
-              // localStorage.setItem('lname', values.lname)
-              // localStorage.setItem('userusername', values.uname)
-              // localStorage.setItem('usercontact', values.contact)
-              // localStorage.setItem('useremail', values.email)
+              console.log(res);
+              console.log('yes');
+              setError('')
 
-              // history.push('/session/setting');
-              
-
+              history.push('/session/setting');
             })
             .catch((error) => {
-              console.log("error");
+              console.log(error.response.data.message);
+              setError(error.response.data.message)
             })
         }}
       >
@@ -78,19 +70,14 @@ const Logout = () => {
             <div class="form">
               <h2>User Settings</h2>
               <div class="inputBox">
-                <Field type="text" classname="textwhite" id="name" name="fname" required="required" />
-                <span>fname</span>
-                <i></i>
-              </div>
-              <div class="inputBox">
-                <Field type="text" classname="textwhite" id="name" name="lname" required="required" />
-                <span>lname</span>
+                <Field type="text" classname="textwhite" id="name" name="fullname" required="required" />
+                <span>fullname</span>
                 <i></i>
               </div>
               <div class="inputBox">
                 <Field type="text" id="username" name="username" required="required" />
                 <span>Username</span>
-                <i></i>
+                <i>{Error}</i>
               </div>
               <div class="inputBox">
                 <Field type="text" id="contact" name="contact" required="required" />
@@ -122,6 +109,8 @@ const Logout = () => {
       </Formik>
     </div>
   )
+}
+  
 }
 
 export default SessionSeting

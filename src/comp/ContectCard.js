@@ -6,6 +6,7 @@ import { Formik, Field, Form } from 'formik';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'
+import { Url } from '../Url';
 
 
 const ContectCard = (props) => {
@@ -28,19 +29,20 @@ const ContectCard = (props) => {
   let DELID
   const Delete = (el) => {
     DELID = el.target.value;
-    const DelUrl = ('https://graceful-tuna-undershirt.cyclic.app/phonebook/delete?id=' + DELID);
+    const DelUrl = (Url()+'/contact/delete?id=' + DELID);
     console.log(DelUrl);
     axios.delete(DelUrl, { headers: { 'usertoken': token } })
       .then((res) => {
         console.log(res);
         history.push('/session');
+        props.reload()
       })
       .catch((error) => {
         console.log("error");
       })
   }
 
-  const Upadteurl = 'https://graceful-tuna-undershirt.cyclic.app/phonebook/update?id=' + props.id;
+  const Upadteurl = Url() + '/contact/update?id=' + props.id;
 
   return (
     <>
@@ -48,27 +50,19 @@ const ContectCard = (props) => {
 
         <Formik
           initialValues={{
-            fname: props.fname || '',
-            lname: props.lname || '',
-            contect: props.contact || '',
+            fullname: props.fullname || '',
+            contact: props.contact || '',
             city: props.city || '',
             country: props.country || '',
           }}
           onSubmit={async (values) => {
 
-            axios.patch(Upadteurl,{
-              "fname": values.fname,
-              "lname": values.lname,
-              "contact": values.contect,
-              "city": values.city,
-              "country":values.country
-            }, { headers: { 'usertoken': token } } )
+            axios.patch(Upadteurl,values, { headers: { 'token': token } } )
               .then((res) => {
                 console.log(res);
                 
                 setData(true);
-                history.push('/session');
-
+                props.reload()
               })
               .catch((error) => {
                 console.log("error");
@@ -82,20 +76,14 @@ const ContectCard = (props) => {
             <div class="box-model">
               <div class="form-model">
                 <div class="inputBox-model">
-                  <Field type="text" id="fname" name="fname" required="required" />
-                  <span>Fname</span>
-                  <i></i>
-                </div>
-                <div class="inputBox-model">
-                  <Field type="text" id="lname" name="lname" required="required" />
-                  <span>Lname</span>
+                  <Field type="text" id="fullname" name="fullname" required="required" />
+                  <span>fullname</span>
                   <i></i>
                 </div>
 
-
                 <div class="inputBox-model">
-                  <Field id="contect" type="contect" name="contect" required="required" />
-                  <span>Contect</span>
+                  <Field id="contact" type="contact" name="contact" required="required" />
+                  <span>Contact</span>
                   <i></i>
                 </div>
                 <div class="inputBox-model">
@@ -118,9 +106,9 @@ const ContectCard = (props) => {
 
       </div>
       <div class="card">
-        <div class="poster"><h1>{props.fname + " " + props.lname}</h1></div>
+        <div class="poster"><h1>{props.fullname}</h1></div>
         <div class="details">
-          <h1>{props.fname + " " + props.lname}</h1>
+          <h1>{props.fullname}</h1>
           <h1>{props.contact}</h1>
           <div class="rating">
             location :- {props.city},{props.country}

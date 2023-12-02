@@ -1,6 +1,6 @@
 import logo from './logo.svg';
-import './App.css';
 import Login from './comp/Login';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
@@ -20,6 +20,7 @@ import Adminsecure from './comp/Adminsecure';
 import Adminlogin from './comp/Adminlogin';
 import MyAudioComponent from './comp/Loader';
 import SessionSeting from './comp/SessionSeting';
+import './App.css';
 
 function App() {
   return (

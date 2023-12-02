@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 import axios from 'axios';
 import * as Yup from "yup";
 import YupPassword from 'yup-password'
+import { Url } from '../Url';
 YupPassword(Yup);
 const Signup = () => {
 
     let signupSchema = Yup.object().shape({
-        fname: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').required('*required fname'),
-        lname: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').required('*required lname'),
+        fullname: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').required('*required fullname'),
         username: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').required('*required username'),
         password: Yup.string()
           .min(8, 'Min 8 characters')
@@ -25,8 +25,7 @@ const Signup = () => {
     return (
         <Formik
             initialValues={{
-                fname: '',
-                lname: '',
+                fullname: '',
                 username: '',
                 password: '',
                 email: '',
@@ -34,9 +33,8 @@ const Signup = () => {
             }}
             validationSchema={signupSchema}
             onSubmit={async (values, action) => {
-                axios.post('https://graceful-tuna-undershirt.cyclic.app/user/signup', {
-                    "fname": values.fname,
-                    "lname": values.lname,
+                axios.post(Url()+'/user/signup', {
+                    "fullname": values.fullname,
                     "uname": values.username,
                     "password": values.password,
                     "contact": values.contect,
@@ -56,15 +54,9 @@ const Signup = () => {
                     <div class="form">
                         <h2>Sign up</h2>
                         <div class="inputBox">
-                            <Field id="fname" name="fname" required="required" />
-                            <span>First name</span>
-                            <i><ErrorMessage name='fname'/></i>
-                        </div>
-                        <div class="inputBox">
-                            <Field id="lname" name="lname"
-                                required="required" />
-                            <span>Last name</span>
-                            <i><ErrorMessage name='lname'/></i>
+                            <Field id="fullname" name="fullname" required="required" />
+                            <span>Fullname</span>
+                            <i><ErrorMessage name='fullname'/></i>
                         </div>
                         <div class="inputBox">
                             <Field id="username" name="username" required="required" />

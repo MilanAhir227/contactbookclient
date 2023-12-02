@@ -11,18 +11,17 @@ import {
   } from "react-router-dom";
 import SessionSeting from './SessionSeting';
 import Secure from './Secure';
+import { Url } from '../Url';
 
 
 const Session = () => {
     const history = useHistory();
-    // const [Contect, setContect] = useState([]);
-    const [User, setUser] = useState([]);
+    const [User, setUser] = useState({});
 
     const [search, setsearch] = useState("");
     const [searchdata, setsearchdata] = useState([]);
 
-    // const searchurl = 'https://graceful-tuna-undershirt.cyclic.appphonebook/findbyfeild?search=' + search;
-     const searchurl = 'https://graceful-tuna-undershirt.cyclic.app/phonebook/find';
+     let searchurl = Url() + '/contact/find?search=' + search;
 
 
     const [data, setData] = useState(true);
@@ -34,23 +33,11 @@ const Session = () => {
 
     const Close = () => {
         setData(true)
-
     }
     const Logout = () => {
         let comform = window.confirm("do logout this page ?");
         if (comform) {
             localStorage.removeItem('token')
-            localStorage.removeItem('admintoken')
-            localStorage.removeItem('fname')
-            localStorage.removeItem('lname')
-            localStorage.removeItem('userid')
-            localStorage.removeItem('userusername')
-            localStorage.removeItem('usercontact')
-            localStorage.removeItem('useremail')
-            localStorage.removeItem('adminname')
-            localStorage.removeItem('adminusername')
-            localStorage.removeItem('admincontact')
-            localStorage.removeItem('adminemail')
             history.push('/');
         }
         else {
@@ -59,30 +46,18 @@ const Session = () => {
     }
     const token = localStorage.getItem('token');
 
+    const Datafetch = () =>{return axios.get(searchurl, { headers: { 'token': token } }) .then((res) => {
+        setsearchdata(res.data.data)
+        // console.log(res.data);
+    })
+    .catch((error) => {
+        console.log("error");
+    })}
+           
 
-
-    // console.log(Contect);
-    // useEffect(() => {
-    //     axios.get('https://graceful-tuna-undershirt.cyclic.app/phonebook/findbyuser', { headers: { 'usertoken': token } })
-    //         .then((res) => {
-    //             setContect(res.data.data)
-    //             // console.log(res.data);
-    //         })
-    //         .catch((error) => {
-    //             console.log("error");
-    //         })
-
-    // }, [Contect])
     useEffect(() => {
-        axios.get(searchurl, { headers: { 'usertoken': token } })
-            .then((res) => {
-                setsearchdata(res.data.data)
-                // console.log(res.data);
-            })
-            .catch((error) => {
-                console.log("error");
-            })
-    }, [searchdata])
+        Datafetch()
+    }, [search])
 
     const Serch = (text) => {
         setsearch(text)
@@ -91,6 +66,14 @@ const Session = () => {
         history.push('/session/setting')
     }
 
+    useEffect(()=>{
+
+        axios.get(Url() + '/user/findbyid',{headers : { token : token}})
+        .then((res)=>{
+            console.log(res.data.data);
+            setUser(res.data.data);
+        })
+    },[token])
    
 
     return (
@@ -105,9 +88,9 @@ const Session = () => {
                             <img src="https://illustoon.com/photo/7817.png" width={'100%'} alt="" />
                         </div>
                         <div className='w-80'>
-                            <div className="w-50"><h1>Username :- {localStorage.getItem('fname')+" "+localStorage.getItem('lname')}</h1></div>
+                            <div className="w-50"><h1>Username :- {User.fullname}</h1></div>
                             <div className="w-50">
-                                <h2>name :- {localStorage.getItem('userusername')}</h2></div>
+                                <h2>name :- {User.uname}</h2></div>
                         </div>
                     </div>
                     <div className="search"><input type="search" placeholder='search' onChange={(el) => Serch(el.target.value)} /></div>
@@ -117,7 +100,8 @@ const Session = () => {
                         {
                             // console.log(el.city);    
                             searchdata.map((el, index) => {
-                                return <ContectCard fname={el.fname} lname={el.lname} contact={el.contact} city={el.city} country={el.country} id={el._id} />
+                                console.log(el);
+                                return <ContectCard fullname={el.fullname} contact={el.contact} city={el.city} country={el.country} id={el._id} reload={Datafetch}/>
                             })
                         }
                         <div class="card-add">
@@ -127,26 +111,24 @@ const Session = () => {
 
                             <Formik
                                 initialValues={{
-                                    fname: '',
-                                    lname: '',
+                                    fullname: '',
                                     contect: '',
                                     city: '',
                                     country: '',
                                 }}
                                 onSubmit={async (values, action) => {
                                     console.log(values);
-                                    axios.post('https://graceful-tuna-undershirt.cyclic.app/phonebook/create', {
-                                        "fname": values.fname,
-                                        "lname": values.lname,
+                                    axios.post(Url() + '/contact/create', {
+                                        "fullname": values.fullname,
                                         "contact": values.contect,
                                         "city": values.city,
                                         "country": values.country,
-                                    }, { headers: { 'usertoken': token } })
+                                    }, { headers: { 'token': token } })
                                         .then(function (response) {
                                             action.resetForm();
                                             setData(true)
-                                            history.push('/session')
-
+                                            Datafetch()
+                                            console.log(response);
                                         })
                                         .catch(function (error) {
                                             console.log("error");
@@ -158,13 +140,8 @@ const Session = () => {
                                     <div class="box-model">
                                         <div class="form-model">
                                             <div class="inputBox-model">
-                                                <Field type="text" id="fname" name="fname" required="required" />
-                                                <span>Fname</span>
-                                                <i></i>
-                                            </div>
-                                            <div class="inputBox-model">
-                                                <Field type="text" id="lname" name="lname" required="required" />
-                                                <span>Lname</span>
+                                                <Field type="text" id="fullname" name="fullname" required="required" />
+                                                <span>fullname</span>
                                                 <i></i>
                                             </div>
 
